@@ -1,13 +1,18 @@
+import gsap from "gsap";
+
 export default class Loading {
   private loadingSection: HTMLElement | null;
   private percentageElement: HTMLElement | null;
   private resources: HTMLElement[] = [];
   private loadedCount: number = 0;
   private totalResources: number = 0;
+  private bars: NodeListOf<SVGElement> | null = null;
+  private animationTimeline: gsap.core.Timeline | null = null;
 
   constructor() {
     this.loadingSection = document.querySelector(".loading-section");
     this.percentageElement = document.querySelector(".loading-percentage");
+    this.bars = document.querySelectorAll(".logo-bar svg");
     this.init();
   }
 
@@ -15,10 +20,72 @@ export default class Loading {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", () => {
         this.collectResources();
+        this.setupAnimation();
       });
     } else {
       this.collectResources();
+      this.setupAnimation();
     }
+  }
+
+  private setupAnimation(): void {
+    this.animationTimeline = gsap.timeline();
+
+    if (!this.bars || this.bars.length === 0) return;
+    if (!this.animationTimeline) return;
+
+    const bars = this.bars;
+    const timeline = this.animationTimeline;
+    const barHeight = bars[0].getBoundingClientRect().height;
+    console.log(barHeight);
+
+    bars.forEach((bar, index) => {
+      const last = index === bars.length - 1;
+
+      if (last) {
+        timeline
+          .to(
+            bar,
+            {
+              top: `${8}px`,
+              duration: 0.2,
+              ease: "power2.in",
+            },
+            "<"
+          )
+          .to(bar, {
+            top: "0px",
+            duration: 0.8,
+            ease: "bounce.out",
+          })
+          .to(
+            bar,
+            {
+              opacity: 1,
+              duration: 0.2,
+              ease: "power1.in",
+            },
+            "<"
+          );
+      } else {
+        timeline
+          .to(
+            bar,
+            {
+              delay: index * 0.1,
+              top: `${barHeight}px`,
+              duration: 0.3,
+              ease: "power1.in",
+            },
+            "<"
+          )
+          .to(bar, {
+            opacity: 0,
+            duration: 0.2,
+            ease: "power1.in",
+          });
+      }
+    });
   }
 
   private collectResources(): void {
