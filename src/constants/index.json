@@ -1,0 +1,81 @@
+{
+  "LINKS": {
+    "instagram": "https://instagram.com/off.gu",
+    "linkedin": "https://www.linkedin.com/in/gustavo-pontes-dev/",
+    "youtube": "https://www.youtube.com/@tasksoff_dev",
+    "awwwards": "https://www.awwwards.com/gustavo-pontes/",
+    "home": "/",
+    "blog": "/blog",
+    "contact": "/contact",
+    "ecommerce": "/ecommerce",
+    "websiteCreative": "/website-creative",
+    "termsAndCondition": "/terms-and-condition"
+  },
+  "ASSETS": {
+    "like": {
+      "src": "/assets/memoji/like.png",
+      "alt": "Memoji making a thumbs up gesture"
+    },
+    "macbook": {
+      "src": "/assets/memoji/macbook.png",
+      "alt": "Memoji using a MacBook"
+    },
+    "peace": {
+      "src": "/assets/memoji/peace.png",
+      "alt": "Memoji making a peace sign"
+    }
+  },
+  "CONTENT": {
+    "pt": {
+      "username": "@off.gu",
+      "taglineEn": "Creativity in every pixel.",
+      "taglinePt": "Criatividade em cada pixel.",
+      "siteName": "GustaPT",
+      "nav": {
+        "website": "WEBSITE",
+        "youtube": "YOUTUBE",
+        "blog": "BLOG",
+        "contact": "CONTACT",
+        "instagram": "INSTAGRAM",
+        "linkedin": "LINKEDIN",
+        "awwwards": "AWWWARDS"
+      },
+      "home": {
+        "title": "Página Inicial"
+      }
+    },
+    "en": {
+      "username": "@off.gu",
+      "taglineEn": "Creativity in every pixel.",
+      "taglinePt": "Criatividade em cada pixel.",
+      "siteName": "GustaPT",
+      "nav": {
+        "website": "WEBSITE",
+        "youtube": "YOUTUBE",
+        "blog": "BLOG",
+        "contact": "CONTACT",
+        "instagram": "INSTAGRAM",
+        "linkedin": "LINKEDIN",
+        "awwwards": "AWWWARDS"
+      },
+      "home": {
+        "title": "Home Page"
+      }
+    },
+    "es": {
+      "username": "@off.gu",
+      "taglineEn": "Creativity in every pixel.",
+      "taglinePt": "Criatividade em cada pixel.",
+      "siteName": "GustaPT",
+      "nav": {
+        "website": "SITIO WEB",
+        "youtube": "YOUTUBE",
+        "blog": "BLOG",
+        "contact": "CONTACTO",
+        "instagram": "INSTAGRAM",
+        "linkedin": "LINKEDIN",
+        "awwwards": "AWWWARDS"
+      }
+    }
+  }
+}
