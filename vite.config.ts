@@ -34,6 +34,8 @@ function processJsonVars(html: string): string {
 function processPageWithLayout(pageHtml: string, pageName: string): string {
   let processedHtml = pageHtml;
   try {
+    // expand simple repeat directives in the page before layout processing
+    processedHtml = processRepeats(processedHtml);
     const layoutPath = resolve(__dirname, "src/app/layout.html");
     let layoutHtml = readFileSync(layoutPath, "utf-8");
     const headMatch = pageHtml.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
@@ -65,12 +67,15 @@ function processPageWithLayout(pageHtml: string, pageName: string): string {
     processedHtml = layoutHtml;
   } catch (error) {}
   processedHtml = processComponents(processedHtml);
+  // expand repeats in components-injected html as well
+  processedHtml = processRepeats(processedHtml);
   processedHtml = processJsonVars(processedHtml);
   return processedHtml;
 }
 
 function processComponents(html: string): string {
-  let processedHtml = html;
+  // expand repeats before component injection so repeated templates get processed too
+  let processedHtml = processRepeats(html);
   const templateRegex = /\{\{(common\/[^}]+)\}\}/g;
   const matches = processedHtml.match(templateRegex);
 
@@ -114,6 +119,19 @@ function processComponents(html: string): string {
 
   return processedHtml;
 }
+
+// Process a simple repeat directive: {{repeat 6}}...{{/repeat}}
+function processRepeats(html: string): string {
+  return html.replace(
+    /\{\{repeat\s+(\d+)\}\}([\s\S]*?)\{\{\/repeat\}\}/g,
+    (_m, count, content) => {
+      const n = Math.max(0, Number(count) || 0);
+      return Array.from({ length: n })
+        .map(() => content)
+        .join("");
+    }
+  );
+}
 function getPageMap(): Record<string, string> {
   const pages: Record<string, string> = {};
   const root = resolve(__dirname, "src/app");
@@ -149,6 +167,27 @@ function templateProcessor(): Plugin {
         }
         return next();
       });
+
+      // Watch for filesystem changes and trigger a full reload in the browser
+      try {
+        const reloadExts = /\.(html|scss|ts)$/i;
+        const watcher = (server as any).watcher || (server as any).chokidar;
+        if (watcher && typeof watcher.on === "function") {
+          const trigger = (file: string) => {
+            if (!file) return;
+            if (reloadExts.test(file)) {
+              try {
+                server.ws.send({ type: "full-reload", path: "*" });
+              } catch (e) {}
+            }
+          };
+          watcher.on("change", trigger);
+          watcher.on("add", trigger);
+          watcher.on("unlink", trigger);
+        }
+      } catch (e) {
+        // noop - don't break dev server if watcher hooks can't be attached
+      }
     },
     transformIndexHtml(html, ctx) {
       const file = ctx?.filename || "";
