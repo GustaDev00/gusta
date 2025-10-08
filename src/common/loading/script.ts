@@ -29,7 +29,7 @@ export default class Loading {
   }
 
   private setupAnimation(): void {
-    this.animationTimeline = gsap.timeline();
+    this.animationTimeline = gsap.timeline({ paused: true });
 
     if (!this.bars || this.bars.length === 0) return;
     if (!this.animationTimeline) return;
@@ -37,55 +37,285 @@ export default class Loading {
     const bars = this.bars;
     const timeline = this.animationTimeline;
     const barHeight = bars[0].getBoundingClientRect().height;
-    console.log(barHeight);
 
-    bars.forEach((bar, index) => {
-      const last = index === bars.length - 1;
-
-      if (last) {
-        timeline
-          .to(
-            bar,
-            {
-              top: `${8}px`,
-              duration: 0.2,
-              ease: "power2.in",
-            },
-            "<"
-          )
-          .to(bar, {
-            top: "0px",
-            duration: 0.8,
-            ease: "bounce.out",
-          })
-          .to(
-            bar,
-            {
-              opacity: 1,
-              duration: 0.2,
-              ease: "power1.in",
-            },
-            "<"
-          );
-      } else {
-        timeline
-          .to(
-            bar,
-            {
-              delay: index * 0.1,
-              top: `${barHeight}px`,
-              duration: 0.3,
-              ease: "power1.in",
-            },
-            "<"
-          )
-          .to(bar, {
-            opacity: 0,
-            duration: 0.2,
-            ease: "power1.in",
-          });
-      }
+    timeline.to(bars[0], {
+      delay: 0.1,
+      top: `${barHeight}px`,
+      duration: 0.4,
+      ease: "power1.in",
     });
+
+    timeline.to(bars[1], {
+      delay: 0,
+      top: `${barHeight}px`,
+      duration: 0.3,
+      ease: "power1.in",
+    });
+
+    timeline.to(
+      bars[0],
+      {
+        top: `${barHeight * 2}px`,
+        duration: 0.3,
+        ease: "power1.in",
+      },
+      "<"
+    );
+
+    timeline.to(bars[2], {
+      top: `${barHeight}px`,
+      duration: 0.2,
+      ease: "power1.in",
+    });
+
+    timeline.to(
+      bars[1],
+      {
+        delay: 0,
+        top: `${barHeight * 2}px`,
+        duration: 0.2,
+        ease: "power1.in",
+      },
+      "<"
+    );
+
+    timeline.to(
+      bars[0],
+      {
+        top: `${barHeight * 3}px`,
+        duration: 0.3,
+        ease: "power1.in",
+      },
+      "<"
+    );
+
+    if (bars.length > 3) {
+      timeline.to(bars[3], {
+        delay: 0,
+        top: `${barHeight}px`,
+        duration: 0.2,
+        ease: "power1.in",
+      });
+
+      timeline.to(
+        bars[2],
+        {
+          delay: 0,
+          top: `${barHeight * 2}px`,
+          duration: 0.2,
+          ease: "power1.in",
+        },
+        "<"
+      );
+
+      timeline.to(
+        bars[1],
+        {
+          top: `${barHeight * 3}px`,
+          duration: 0.2,
+          ease: "power1.in",
+        },
+        "<"
+      );
+
+      timeline.to(
+        bars[0],
+        {
+          top: `${barHeight * 4}px`,
+          duration: 0.3,
+          ease: "power1.in",
+        },
+        "<"
+      );
+    }
+
+    if (bars.length > 4) {
+      timeline.to(bars[4], {
+        delay: 0,
+        top: `${barHeight}px`,
+        duration: 0.2,
+        ease: "power1.in",
+      });
+
+      timeline.to(
+        bars[3],
+        {
+          top: `${barHeight * 2}px`,
+          duration: 0.2,
+          ease: "power1.in",
+        },
+        "<"
+      );
+
+      timeline.to(
+        bars[2],
+        {
+          top: `${barHeight * 3}px`,
+          duration: 0.2,
+          ease: "power1.in",
+        },
+        "<"
+      );
+
+      timeline.to(
+        bars[1],
+        {
+          top: `${barHeight * 4}px`,
+          duration: 0.2,
+          ease: "power1.in",
+        },
+        "<"
+      );
+
+      timeline.to(
+        bars[0],
+        {
+          top: `${barHeight * 5}px`,
+          duration: 0.3,
+          ease: "power1.in",
+        },
+        "<"
+      );
+    }
+
+    if (bars.length > 5) {
+      timeline.to(
+        bars[5],
+        {
+          top: `${8}px`,
+          duration: 0.8,
+          ease: "bounce.out",
+        },
+        "<"
+      );
+      timeline.to(
+        bars[4],
+        {
+          delay: 0,
+          top: `${barHeight + 8}px`,
+          duration: 0.8,
+          ease: "bounce.out",
+        },
+        "<"
+      );
+
+      timeline.to(
+        bars[3],
+        {
+          top: `${barHeight * 2 + 8}px`,
+          duration: 0.8,
+          ease: "bounce.out",
+        },
+        "<"
+      );
+
+      timeline.to(
+        bars[2],
+        {
+          top: `${barHeight * 3 + 8}px`,
+          duration: 0.8,
+          ease: "bounce.out",
+        },
+        "<"
+      );
+
+      timeline.to(
+        bars[1],
+        {
+          top: `${barHeight * 4 + 8}px`,
+          duration: 0.8,
+          ease: "bounce.out",
+        },
+        "<"
+      );
+
+      timeline.to(
+        bars[0],
+        {
+          top: `${barHeight * 5 + 8}px`,
+          duration: 0.8,
+          ease: "bounce.out",
+        },
+        "<"
+      );
+
+      timeline.to(bars[5], {
+        top: "0px",
+        duration: 0.2,
+        ease: "power1",
+      });
+      timeline.to(
+        bars[4],
+        {
+          top: `${barHeight}px`,
+          duration: 0.2,
+          ease: "power1",
+        },
+        "<"
+      );
+      timeline.to(
+        bars[3],
+        {
+          top: `${barHeight * 2}px`,
+          duration: 0.2,
+          ease: "power1",
+        },
+        "<"
+      );
+      timeline.to(
+        bars[2],
+        {
+          top: `${barHeight * 3}px`,
+          duration: 0.2,
+          ease: "power1",
+        },
+        "<"
+      );
+      timeline.to(
+        bars[1],
+        {
+          top: `${barHeight * 4}px`,
+          duration: 0.2,
+          ease: "power1",
+        },
+        "<"
+      );
+      timeline.to(
+        bars[0],
+        {
+          top: `${barHeight * 5}px`,
+          duration: 0.2,
+          ease: "power1",
+        },
+        "<"
+      );
+    }
+
+    if (this.percentageElement) {
+      const percentageProxy = { value: 0 };
+      const timelineDuration = timeline.duration();
+
+      this.percentageElement.textContent = "0%";
+
+      if (timelineDuration > 0) {
+        timeline.to(
+          percentageProxy,
+          {
+            value: 100,
+            duration: timelineDuration - 0.7,
+            ease: "none",
+            onUpdate: () => {
+              if (!this.percentageElement) return;
+              const currentValue = Math.round(percentageProxy.value);
+              this.percentageElement.textContent = `${currentValue}%`;
+            },
+          },
+          0
+        );
+      } else {
+        this.percentageElement.textContent = "100%";
+      }
+    }
   }
 
   private collectResources(): void {
@@ -216,8 +446,6 @@ export default class Loading {
       `[Loading] Carregado (${this.loadedCount}/${this.totalResources}): ${resourceName}`
     );
 
-    this.updatePercentage(percentage);
-
     if (this.loadedCount >= this.totalResources) {
       this.onAllResourcesLoaded();
     }
@@ -228,17 +456,12 @@ export default class Loading {
     this.onResourceLoaded(resourceName);
   }
 
-  private updatePercentage(percentage: number): void {
-    if (this.percentageElement) {
-      this.percentageElement.textContent = `${percentage}%`;
-    }
-  }
-
   private onAllResourcesLoaded(): void {
     console.log(
       "[Loading] Todos os recursos carregados! Pronto para iniciar animação."
     );
-    this.updatePercentage(100);
+
+    this.animationTimeline?.play();
   }
 }
 
