@@ -11,7 +11,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "lighthouse": "pnpm build && lhci autorun"
+    "lighthouse": "pnpm build && lhci autorun",
+    "hostinger": "pnpm build && node -e \"const fs=require('fs');if(fs.existsSync('dist.zip')){fs.rmSync('dist.zip');}\" && cd dist && zip -r ../dist.zip ."
   },
   "author": "",
   "license": "ISC",
