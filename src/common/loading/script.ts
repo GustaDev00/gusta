@@ -2,17 +2,25 @@ import gsap from "gsap";
 
 export default class Loading {
   private loadingSection: HTMLElement | null;
-  private percentageElement: HTMLElement | null;
+  private logo: HTMLElement | null = null;
+  private percentageElement: HTMLElement | null = null;
+  private bars: NodeListOf<SVGElement> | null = null;
   private resources: HTMLElement[] = [];
   private loadedCount: number = 0;
   private totalResources: number = 0;
-  private bars: NodeListOf<SVGElement> | null = null;
+
   private animationTimeline: gsap.core.Timeline | null = null;
 
   constructor() {
     this.loadingSection = document.querySelector(".loading-section");
-    this.percentageElement = document.querySelector(".loading-percentage");
-    this.bars = document.querySelectorAll(".logo-bar svg");
+    if (this.loadingSection) {
+      this.logo = this.loadingSection.querySelector(".logo");
+      this.percentageElement = this.loadingSection.querySelector(
+        ".loading-percentage"
+      );
+      this.bars = this.loadingSection.querySelectorAll(".logo-bar svg");
+    }
+
     this.init();
   }
 
@@ -31,12 +39,17 @@ export default class Loading {
   private setupAnimation(): void {
     this.animationTimeline = gsap.timeline({ paused: true });
 
-    if (!this.bars || this.bars.length === 0) return;
+    if (!this.bars || this.bars.length === 0 || this.bars.length < 6) return;
     if (!this.animationTimeline) return;
+    if (!this.percentageElement) return;
+    if (!this.logo) return;
 
-    const bars = this.bars;
     const timeline = this.animationTimeline;
+    const bars = this.bars;
+    const barCount = bars.length;
     const barHeight = bars[0].getBoundingClientRect().height;
+    const percentage = this.percentageElement;
+    const logo = this.logo;
 
     timeline.to(bars[0], {
       delay: 0.1,
@@ -45,277 +58,96 @@ export default class Loading {
       ease: "power1.in",
     });
 
-    timeline.to(bars[1], {
-      delay: 0,
-      top: `${barHeight}px`,
-      duration: 0.3,
-      ease: "power1.in",
-    });
+    for (let i = 1; i < Math.min(barCount, 6); i++) {
+      const duration = i === 1 ? 0.3 : 0.2;
 
-    timeline.to(
-      bars[0],
-      {
-        top: `${barHeight * 2}px`,
-        duration: 0.3,
-        ease: "power1.in",
-      },
-      "<"
-    );
-
-    timeline.to(bars[2], {
-      top: `${barHeight}px`,
-      duration: 0.2,
-      ease: "power1.in",
-    });
-
-    timeline.to(
-      bars[1],
-      {
-        delay: 0,
-        top: `${barHeight * 2}px`,
-        duration: 0.2,
-        ease: "power1.in",
-      },
-      "<"
-    );
-
-    timeline.to(
-      bars[0],
-      {
-        top: `${barHeight * 3}px`,
-        duration: 0.3,
-        ease: "power1.in",
-      },
-      "<"
-    );
-
-    if (bars.length > 3) {
-      timeline.to(bars[3], {
+      timeline.to(bars[i], {
         delay: 0,
         top: `${barHeight}px`,
-        duration: 0.2,
+        duration,
         ease: "power1.in",
       });
 
-      timeline.to(
-        bars[2],
-        {
-          delay: 0,
-          top: `${barHeight * 2}px`,
-          duration: 0.2,
-          ease: "power1.in",
-        },
-        "<"
-      );
-
-      timeline.to(
-        bars[1],
-        {
-          top: `${barHeight * 3}px`,
-          duration: 0.2,
-          ease: "power1.in",
-        },
-        "<"
-      );
-
-      timeline.to(
-        bars[0],
-        {
-          top: `${barHeight * 4}px`,
-          duration: 0.3,
-          ease: "power1.in",
-        },
-        "<"
-      );
-    }
-
-    if (bars.length > 4) {
-      timeline.to(bars[4], {
-        delay: 0,
-        top: `${barHeight}px`,
-        duration: 0.2,
-        ease: "power1.in",
-      });
-
-      timeline.to(
-        bars[3],
-        {
-          top: `${barHeight * 2}px`,
-          duration: 0.2,
-          ease: "power1.in",
-        },
-        "<"
-      );
-
-      timeline.to(
-        bars[2],
-        {
-          top: `${barHeight * 3}px`,
-          duration: 0.2,
-          ease: "power1.in",
-        },
-        "<"
-      );
-
-      timeline.to(
-        bars[1],
-        {
-          top: `${barHeight * 4}px`,
-          duration: 0.2,
-          ease: "power1.in",
-        },
-        "<"
-      );
-
-      timeline.to(
-        bars[0],
-        {
-          top: `${barHeight * 5}px`,
-          duration: 0.3,
-          ease: "power1.in",
-        },
-        "<"
-      );
-    }
-
-    if (bars.length > 5) {
-      timeline.to(
-        bars[5],
-        {
-          top: `${8}px`,
-          duration: 0.8,
-          ease: "bounce.out",
-        },
-        "<"
-      );
-      timeline.to(
-        bars[4],
-        {
-          delay: 0,
-          top: `${barHeight + 8}px`,
-          duration: 0.8,
-          ease: "bounce.out",
-        },
-        "<"
-      );
-
-      timeline.to(
-        bars[3],
-        {
-          top: `${barHeight * 2 + 8}px`,
-          duration: 0.8,
-          ease: "bounce.out",
-        },
-        "<"
-      );
-
-      timeline.to(
-        bars[2],
-        {
-          top: `${barHeight * 3 + 8}px`,
-          duration: 0.8,
-          ease: "bounce.out",
-        },
-        "<"
-      );
-
-      timeline.to(
-        bars[1],
-        {
-          top: `${barHeight * 4 + 8}px`,
-          duration: 0.8,
-          ease: "bounce.out",
-        },
-        "<"
-      );
-
-      timeline.to(
-        bars[0],
-        {
-          top: `${barHeight * 5 + 8}px`,
-          duration: 0.8,
-          ease: "bounce.out",
-        },
-        "<"
-      );
-
-      timeline.to(bars[5], {
-        top: "0px",
-        duration: 0.2,
-        ease: "power1",
-      });
-      timeline.to(
-        bars[4],
-        {
-          top: `${barHeight}px`,
-          duration: 0.2,
-          ease: "power1",
-        },
-        "<"
-      );
-      timeline.to(
-        bars[3],
-        {
-          top: `${barHeight * 2}px`,
-          duration: 0.2,
-          ease: "power1",
-        },
-        "<"
-      );
-      timeline.to(
-        bars[2],
-        {
-          top: `${barHeight * 3}px`,
-          duration: 0.2,
-          ease: "power1",
-        },
-        "<"
-      );
-      timeline.to(
-        bars[1],
-        {
-          top: `${barHeight * 4}px`,
-          duration: 0.2,
-          ease: "power1",
-        },
-        "<"
-      );
-      timeline.to(
-        bars[0],
-        {
-          top: `${barHeight * 5}px`,
-          duration: 0.2,
-          ease: "power1",
-        },
-        "<"
-      );
-    }
-
-    if (this.percentageElement) {
-      const percentageProxy = { value: 0 };
-      const timelineDuration = timeline.duration();
-
-      this.percentageElement.textContent = "0%";
-
-      if (timelineDuration > 0) {
+      for (let j = 0; j < i; j++) {
         timeline.to(
-          percentageProxy,
+          bars[j],
           {
-            value: 100,
-            duration: timelineDuration - 0.7,
-            ease: "none",
-            onUpdate: () => {
-              if (!this.percentageElement) return;
-              const currentValue = Math.round(percentageProxy.value);
-              this.percentageElement.textContent = `${currentValue}%`;
-            },
+            delay: j === 0 && i === 1 ? 0 : undefined,
+            top: `${barHeight * (i - j + 1)}px`,
+            duration: j === 0 ? 0.3 : duration,
+            ease: "power1.in",
           },
-          0
+          "<"
         );
-      } else {
-        this.percentageElement.textContent = "100%";
       }
     }
+
+    for (let i = 0; i < 6; i++) {
+      timeline.to(
+        bars[5 - i],
+        {
+          delay: i === 4 ? 0 : undefined,
+          top: `${barHeight * i + 8}px`,
+          duration: 0.8,
+          ease: "bounce.out",
+        },
+        "<"
+      );
+    }
+
+    timeline.to({}, { duration: 0.1 });
+
+    for (let i = 0; i < 6; i++) {
+      timeline.to(
+        bars[5 - i],
+        {
+          top: `${barHeight * i}px`,
+          duration: 0.2,
+          ease: "power1",
+        },
+        "<"
+      );
+    }
+
+    const percentageProxy = { value: 0 };
+    const timelineDuration = timeline.duration();
+
+    percentage.textContent = "0%";
+
+    if (timelineDuration > 0) {
+      timeline.to(
+        percentageProxy,
+        {
+          value: 100,
+          duration: timelineDuration - 0.7,
+          ease: "power2.inOut",
+
+          onUpdate: () => {
+            if (!this.percentageElement) return;
+            const currentValue = Math.round(percentageProxy.value);
+            this.percentageElement.textContent = `${currentValue}%`;
+          },
+        },
+        0
+      );
+    } else {
+      this.percentageElement.textContent = "100%";
+    }
+
+    timeline.to(this.percentageElement, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power1.out",
+    });
+
+    timeline.to(
+      logo,
+      {
+        rotate: 90,
+        duration: 0.5,
+      },
+      "<"
+    );
   }
 
   private collectResources(): void {
