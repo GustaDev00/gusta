@@ -1,16 +1,81 @@
-.logo-nav {
-  opacity: 0;
-  position: absolute;
-  display: block;
-  height: 15.6rem;
-  width: 14.6rem;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(90deg);
+.navbar {
+  position: fixed;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   z-index: 5;
 
-  svg {
+  &-line {
     width: 100%;
-    height: 100%;
+    height: 0.1rem;
+    background: var(--quick-silver);
+
+    &:first-of-type {
+      width: 38.5rem;
+    }
+
+    &:nth-of-type(2) {
+      width: 100%;
+    }
+
+    &:last-of-type {
+      width: 38.5rem;
+    }
+  }
+
+  &-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 9.7rem;
+    border-radius: 50%;
+
+    svg {
+      opacity: 0;
+      position: absolute;
+      height: 15.6rem;
+      width: 14.6rem;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  &-links {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    gap: 2.5rem;
+    margin: 0 2rem;
+
+    li {
+      color: var(--white);
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: -0.12rem;
+    }
+  }
+
+  &-letstalk {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    height: 2.3rem;
+    color: var(--quick-silver);
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 114.904%;
+    border-radius: 1.1rem;
+    background: var(--oxford-blue);
   }
 }

@@ -33,7 +33,9 @@
       "siteName": "GustaPT",
       "nav": {
         "website": "WEBSITE",
+        "ecommerce": "ECOMMERCE",
         "youtube": "YOUTUBE",
+        "letstalk": "LET'S TALK",
         "blog": "BLOG",
         "contact": "CONTACT",
         "instagram": "INSTAGRAM",
@@ -52,6 +54,7 @@
       "nav": {
         "website": "WEBSITE",
         "youtube": "YOUTUBE",
+        "letstalk": "LET'S TALK",
         "blog": "BLOG",
         "contact": "CONTACT",
         "instagram": "INSTAGRAM",
@@ -70,6 +73,7 @@
       "nav": {
         "website": "SITIO WEB",
         "youtube": "YOUTUBE",
+        "letstalk": "LET'S TALK",
         "blog": "BLOG",
         "contact": "CONTACTO",
         "instagram": "INSTAGRAM",

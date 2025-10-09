@@ -2,13 +2,23 @@ import gsap from "gsap";
 import ResourceLoader from "@/utils/resources";
 
 export default class NavbarAnimation {
-  private timeline: gsap.core.Timeline;
+  private navbar: HTMLElement | null = null;
+  private lines: NodeListOf<HTMLElement> | null = null;
   private logo: HTMLElement | null = null;
+  private links: NodeListOf<HTMLElement> | null = null;
+  private letsTalk: HTMLElement | null = null;
+  private timeline: gsap.core.Timeline;
   private resourceLoader: ResourceLoader | null = null;
 
   constructor() {
     this.timeline = gsap.timeline({ paused: true });
-    this.logo = document.querySelector(".logo-nav");
+    this.navbar = document.querySelector(".navbar");
+    if (this.navbar) {
+      this.lines = this.navbar.querySelectorAll(".navbar-line");
+      this.logo = this.navbar.querySelector(".navbar-logo svg");
+      this.links = this.navbar.querySelectorAll(".navbar-links");
+      this.letsTalk = this.navbar.querySelector(".navbar-letstalk");
+    }
 
     this.init();
   }
@@ -49,11 +59,57 @@ export default class NavbarAnimation {
         top: "2.8rem",
         left: "10.9rem",
         transform: "translate(0, 0) rotate(90deg)",
-        duration: 0.5,
+        duration: 0.3,
         ease: "power2.out",
       },
       "<"
     );
+
+    this.timeline.to(
+      this.navbar,
+      {
+        width: "90%",
+        height: "9.7rem",
+        position: "fixed",
+        margin: "0 5%",
+        top: "0",
+        left: "0",
+        duration: 0.1,
+      },
+      "<"
+    );
+
+    this.timeline.to(
+      this.logo,
+      {
+        position: "unset",
+        delay: 0.2,
+      },
+      "<"
+    );
+
+    this.timeline.to(
+      this.links,
+      {
+        display: "flex",
+        opacity: 1,
+        visibility: "visible",
+        duration: 0.3,
+      },
+      "<"
+    );
+
+    this.timeline.to(
+      this.letsTalk,
+      {
+        display: "flex",
+        opacity: 1,
+        visibility: "visible",
+        duration: 0.3,
+      },
+      "<"
+    );
+    this.timeline.to(this.letsTalk, {}, "<");
   }
 
   private onLoadComplete(): void {

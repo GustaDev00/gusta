@@ -1,5 +1,6 @@
-<nav>
-  <a href="/" class="logo-nav">
+<nav class="navbar">
+  <div class="navbar-line"></div>
+  <a href="/" class="navbar-logo">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="146"
@@ -28,21 +29,22 @@
       </defs>
     </svg>
   </a>
-
-  <ul>
+  <div class="navbar-line"></div>
+  <ul class="navbar-links">
     <li>
-      <a href="/websites">Websites</a>
+      <a href="{{LINKS.websiteCreative}}">{{CONTENT.pt.nav.website}}</a>
     </li>
     <li>
-      <a href="/ecommerce">Ecommerce</a>
+      <a href="{{LINKS.ecommerce}}">{{CONTENT.pt.nav.ecommerce}}</a>
     </li>
     <li>
-      <a href="/blog">Blog</a>
+      <a href="{{LINKS.blog}}">{{CONTENT.pt.nav.blog}}</a>
     </li>
     <li>
-      <a href="/contact">Contact</a>
+      <a href="{{LINKS.contact}}">{{CONTENT.pt.nav.contact}}</a>
     </li>
   </ul>
-
-  <a href="#">Let's talk</a>
+  <div class="navbar-line"></div>
+  <a href="#" class="navbar-letstalk">{{CONTENT.pt.nav.letstalk}}</a>
+  <div class="navbar-line"></div>
 </nav>
