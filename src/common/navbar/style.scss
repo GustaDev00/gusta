@@ -1,0 +1,16 @@
+.logo-nav {
+  opacity: 0;
+  position: absolute;
+  display: block;
+  height: 15.6rem;
+  width: 14.6rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  z-index: 5;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}

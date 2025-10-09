@@ -344,5 +344,10 @@ export default defineConfig(({ command }) => {
         scss: {},
       },
     },
+    resolve: {
+      alias: {
+        "@": resolve(__dirname, "src"),
+      },
+    },
   };
 });
