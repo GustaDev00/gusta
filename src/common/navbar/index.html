@@ -1,50 +1,70 @@
 <nav class="navbar">
+  <audio id="clickSound" src="./song/click.mp3" preload="auto"></audio>
   <div class="navbar-line"></div>
   <a href="/" class="navbar-logo">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="146"
-      height="150"
-      viewBox="0 0 146 150"
-      fill="none"
-    >
-      <g clip-path="url(#clip0_2543_1352)">
-        <path
-          d="M20.35 149.91H125.41C136.64 149.91 145.75 138.95 145.75 125.43V39.77H66.1V87.22H93.21V66.88H103.38V110.94H42.37V39.77H0.0200195V125.44C0.0200195 138.96 9.12002 149.92 20.36 149.92L20.35 149.91Z"
-          fill="#A6B0AB"
-        />
-        <path
-          d="M145.73 32.2V16.1C145.73 13.03 144.63 10.17 142.74 7.73L111.84 32.2H145.73Z"
-          fill="#0E4D85"
-        />
-        <path
-          d="M0 16.1V32.2H94.92L133.77 1.44C131.22 0.52 128.39 0 125.4 0H20.34C9.1 0 0 7.21 0 16.1ZM35.59 18.64C35.59 20.51 34.07 22.03 32.2 22.03C30.33 22.03 28.81 20.51 28.81 18.64C28.81 16.77 30.33 15.25 32.2 15.25C34.07 15.25 35.59 16.77 35.59 18.64ZM25.42 18.64C25.42 20.51 23.9 22.03 22.03 22.03C20.16 22.03 18.64 20.51 18.64 18.64C18.64 16.77 20.16 15.25 22.03 15.25C23.9 15.25 25.42 16.77 25.42 18.64ZM15.25 18.64C15.25 20.51 13.73 22.03 11.86 22.03C9.99 22.03 8.47 20.51 8.47 18.64C8.47 16.77 9.99 15.25 11.86 15.25C13.73 15.25 15.25 16.77 15.25 18.64Z"
-          fill="#A6B0AB"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_2543_1352">
-          <rect width="145.75" height="149.91" fill="white" />
-        </clipPath>
-      </defs>
-    </svg>
+    <div class="icon">
+      <div class="icon-bar">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="146"
+          height="33"
+          viewBox="0 0 146 33"
+          fill="none"
+        >
+          <path
+            d="M145.73 32.97V16.87C145.73 13.8 144.63 10.94 142.74 8.5L111.84 32.97H145.73Z"
+            fill="#0E4D85"
+          />
+          <path
+            d="M0 16.87V32.97H94.92L133.77 2.21002C131.22 1.29002 128.39 0.77002 125.4 0.77002H20.34C9.1 0.77002 0 7.98002 0 16.87ZM35.59 19.41C35.59 21.28 34.07 22.8 32.2 22.8C30.33 22.8 28.81 21.28 28.81 19.41C28.81 17.54 30.33 16.02 32.2 16.02C34.07 16.02 35.59 17.54 35.59 19.41ZM25.42 19.41C25.42 21.28 23.9 22.8 22.03 22.8C20.16 22.8 18.64 21.28 18.64 19.41C18.64 17.54 20.16 16.02 22.03 16.02C23.9 16.02 25.42 17.54 25.42 19.41ZM15.25 19.41C15.25 21.28 13.73 22.8 11.86 22.8C9.99 22.8 8.47 21.28 8.47 19.41C8.47 17.54 9.99 16.02 11.86 16.02C13.73 16.02 15.25 17.54 15.25 19.41Z"
+            fill="#A6B0AB"
+          />
+        </svg>
+      </div>
+
+      <div class="icon-g">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="146"
+          height="112"
+          viewBox="0 0 146 112"
+          fill="none"
+        >
+          <path
+            d="M20.33 111.05L125.39 111.05C136.62 111.05 145.73 100.09 145.73 86.57L145.73 0.909973L66.08 0.909973L66.08 48.36L93.19 48.36L93.19 28.02L103.36 28.02L103.36 72.08L42.35 72.08L42.35 0.909973L0 0.909973L0 86.58C0 100.1 9.1 111.06 20.34 111.06L20.33 111.05Z"
+            fill="#A6B0AB"
+          />
+        </svg>
+      </div>
+    </div>
   </a>
   <div class="navbar-line"></div>
   <ul class="navbar-links">
     <li>
-      <a href="{{LINKS.websiteCreative}}">{{CONTENT.pt.nav.website}}</a>
+      <a href="{{LINKS.websiteCreative}}"
+        ><p>{{CONTENT.pt.nav.website}}</p>
+        <strong>{{CONTENT.pt.nav.website}}</strong></a
+      >
     </li>
     <li>
-      <a href="{{LINKS.ecommerce}}">{{CONTENT.pt.nav.ecommerce}}</a>
+      <a href="{{LINKS.ecommerce}}"
+        ><p>{{CONTENT.pt.nav.ecommerce}}</p>
+        <strong>{{CONTENT.pt.nav.ecommerce}}</strong></a
+      >
     </li>
     <li>
-      <a href="{{LINKS.blog}}">{{CONTENT.pt.nav.blog}}</a>
+      <a href="{{LINKS.blog}}"
+        ><p>{{CONTENT.pt.nav.blog}}</p>
+        <strong>{{CONTENT.pt.nav.blog}}</strong></a
+      >
     </li>
     <li>
-      <a href="{{LINKS.contact}}">{{CONTENT.pt.nav.contact}}</a>
+      <a href="{{LINKS.contact}}"
+        ><p>{{CONTENT.pt.nav.contact}}</p>
+        <strong>{{CONTENT.pt.nav.contact}}</strong></a
+      >
     </li>
   </ul>
   <div class="navbar-line"></div>
   <a href="#" class="navbar-letstalk">{{CONTENT.pt.nav.letstalk}}</a>
-  <div class="navbar-line"></div>
 </nav>

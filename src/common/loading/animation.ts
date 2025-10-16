@@ -141,8 +141,9 @@ export default class LoadingAnimator {
       "<"
     );
 
-    this.timeline.to(logo, {
+    this.timeline.to(".loading-section", {
       opacity: 0,
+      visibility: "hidden",
       duration: 0.5,
     });
   }

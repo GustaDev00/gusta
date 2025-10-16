@@ -77,9 +77,9 @@ function processComponents(html: string): string {
   // expand repeats before component injection so repeated templates get processed too
   let processedHtml = processRepeats(html);
   const templateRegex = /\{\{(common\/[^}]+)\}\}/g;
-  const matches = processedHtml.match(templateRegex);
+  let matches = processedHtml.match(templateRegex);
 
-  if (matches) {
+  while (matches && matches.length) {
     matches.forEach((match) => {
       const componentPath = match.replace(/[{}]/g, "");
       const componentHtmlPath = resolve(
@@ -115,6 +115,7 @@ function processComponents(html: string): string {
         }
       } catch (error) {}
     });
+    matches = processedHtml.match(templateRegex);
   }
 
   return processedHtml;
